@@ -1,0 +1,11 @@
+<h1> Saludos {{ nombre }}</h1>
+
+<h3 [ngClass]="nombre == 'Anónimo' ? 'anonimo' : 'saludo'" id="usuario" [innerText]="nombre"></h3>
+<!-- <h3 id="usuario"> {{ nombre }}</h3> -->
+
+<p [ngStyle]="{color: 'orange'}"> Hola ¿Qué tal?</p>
+<p [ngStyle]="myStyle"> Adiós, muy buenas.</p>
+
+<button id="emit-alert" (click)="enviarMensajeAlPadre()"> Mostrar alerta </button>
+
+<app-lista-basica></app-lista-basica>

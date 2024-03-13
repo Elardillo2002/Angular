@@ -1,0 +1,54 @@
+<!-- BLOQUE DE DIRECTIVAS DE ATRIBUTO -->
+
+<p [ngStyle]="{color: 'orange'}"> Lista de elementos </p>
+<p ngClass="underlined"> Aquí vamos a iterar sobre una lista y mostrar varios elementos </p>
+
+<p [ngClass]="['underlined', 'big']"> Texto con estilo</p>
+<p [ngClass]="{underlined: false, big: true}"> Te recomendamos crear un elemento</p>
+
+<!-- BLOQUE DE IF -->
+
+<button (click)="cambiarCargando()"> 
+    {{ cargando ? 'Terminar carga' : 'Iniciar carga'}} 
+</button>
+
+<!-- If cargando == true { -->
+<!-- <p *ngIf="cargando"> Cargando...</p> -->
+
+<ng-container *ngIf="!cargando; else templateEspera">
+    <p> ¡Todo listo!</p>
+</ng-container>
+
+<ng-template #templateEspera>
+    <p> Cargando...</p>
+    <p> Espere a que termine el proceso</p>
+</ng-template>
+
+<!-- BLOQUE DE NGFOR -->
+<!-- Iteramos en la lista de productos -->
+<div *ngFor="let producto of listaElementos">
+    <!-- Ámbito de FOR donde tenemos acceso a "producto" -->
+    <p> 
+        <span [ngStyle]="{fontWeight: 'bold'}">
+            {{producto.nombre}} - {{producto.precio}}
+        </span> 
+        -> {{producto.descripcion}} 
+    </p>
+</div>
+
+<!-- BLOQUE DE SWITCH -->
+<!-- Selección de opción para el usuario -->
+<div>
+    <input type="radio" name="opcion" (click)="escogerOpcion(1)"> Opción 1
+    <input type="radio" name="opcion" (click)="escogerOpcion(2)"> Opción 2
+    <input type="radio" name="opcion" (click)="escogerOpcion(3)"> Opción 3
+    <input type="radio" name="opcion" (click)="escogerOpcion(4)"> Opción 4
+    <input type="radio" name="opcion" selected="selected" (click)="escogerOpcion(0)"> Ocultar
+</div>
+<div [ngSwitch]="opcion">
+    <p [id]="1" *ngSwitchCase="1"> Opción 1</p>
+    <p [id]="2" *ngSwitchCase="2"> Opción 2</p>
+    <p [id]="3" *ngSwitchCase="3"> Opción 3</p>
+    <p [id]="4" *ngSwitchCase="4"> Opción 4</p>
+    <p *ngSwitchDefault class="cerrar">  </p>
+</div>
